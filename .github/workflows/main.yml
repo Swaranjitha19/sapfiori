@@ -1,0 +1,22 @@
+name: Trigger Azure Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-pipeline:
+    runs-on: self-hosted
+    steps:
+      - name: Trigger Azure Pipeline
+        uses: Azure/pipelines@v1.2
+        with:
+          # Fully qualified URL to the Azure DevOps organization along with project name
+          azure-devops-project-url: https://dev.azure.com/UnipharGroup/DAWN-dev
+          # Name of the Azure Pipeline to be triggered
+          azure-pipeline-name: Fiori_GIT
+          # Personal Access Token stored in GitHub Secrets
+          azure-devops-token: ${{ secrets.PAT }}
+
+          
